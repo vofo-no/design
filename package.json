@@ -33,7 +33,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build": "babel ./src/ --ignore '__tests__' --out-dir ./dist",
-    "install": "yarn build"
+    "postinstall": "yarn build"
   },
   "directories": {
     "dist": "dist"
