@@ -1,6 +1,6 @@
 import React from "react";
-import Theme from "./";
-import Container from "../Container";
+import { Theme } from "./";
+import { Container } from "../";
 
 export default { title: "Theme" };
 

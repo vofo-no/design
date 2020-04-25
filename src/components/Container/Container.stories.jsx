@@ -1,6 +1,6 @@
 import React from "react";
-import Theme from "../Theme";
-import Container from "./";
+import { Theme } from "../";
+import { Container } from "./";
 import { withKnobs, select, number, boolean } from "@storybook/addon-knobs";
 
 export default {

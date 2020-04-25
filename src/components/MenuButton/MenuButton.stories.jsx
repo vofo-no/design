@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Theme from "../Theme";
-import MenuButton from "./";
+import { Theme } from "../";
+import { MenuButton } from "./";
 
 export default {
   title: "MenuButton",

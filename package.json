@@ -1,9 +1,9 @@
 {
   "name": "vofo-design",
   "version": "1.0.0",
-  "main": "src/index.js",
   "author": "Voksenopplæringsforbundet <vofo@vofo.no>",
   "license": "MIT",
+  "main": "dist/index.js",
   "private": true,
   "sideEffects": false,
   "peerDependencies": {
@@ -17,19 +17,24 @@
     "typography": "^0.16.19"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-knobs": "^5.3.18",
     "@storybook/addon-links": "^5.3.18",
     "@storybook/addons": "^5.3.18",
     "@storybook/react": "^5.3.18",
-    "babel-loader": "^8.1.0",
     "babel-plugin-emotion": "^10.0.33",
     "react-typography": "^0.16.19"
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "build": "babel ./src/ --ignore '__tests__' --out-dir ./dist"
+  },
+  "directories": {
+    "dist": "dist"
   }
 }

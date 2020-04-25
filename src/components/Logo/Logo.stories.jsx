@@ -1,6 +1,6 @@
 import React from "react";
-import Theme from "../Theme";
-import Logo from "./";
+import { Theme } from "../";
+import { Logo } from "./";
 
 export default { title: "Logo" };
 
