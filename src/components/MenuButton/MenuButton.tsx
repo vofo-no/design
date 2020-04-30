@@ -1,12 +1,16 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import PropTypes from "prop-types";
 import { useTheme } from "emotion-theming";
 
-import { defaultTheme, typographyJSON } from "../Theme";
+import { defaultTheme, VofoTheme, typographyJSON } from "../Theme";
 
-const MenuButton = ({ open, onClick }) => {
-  const theme = useTheme() || defaultTheme;
+interface MenuButtonProps {
+  open: boolean;
+  onClick: (event: any) => void;
+}
+
+const MenuButton = ({ open = false, onClick }: MenuButtonProps) => {
+  const theme: VofoTheme = useTheme() || defaultTheme;
 
   return (
     <button
@@ -59,15 +63,6 @@ const MenuButton = ({ open, onClick }) => {
       </div>
     </button>
   );
-};
-
-MenuButton.propTypes = {
-  open: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
-};
-
-MenuButton.defaultProps = {
-  open: false,
 };
 
 export { MenuButton };

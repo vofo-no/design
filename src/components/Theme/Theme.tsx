@@ -3,7 +3,32 @@ import { jsx, Global } from "@emotion/core";
 import { ThemeProvider } from "emotion-theming";
 import Typography from "typography";
 
-export const defaultTheme = {
+export type VofoTheme = {
+  colors: {
+    brand: string;
+    white: string;
+    whiteText: string;
+    gray: string;
+    dark: string;
+    darkText: string;
+    light: string;
+    green: string;
+  };
+  spacing: {
+    unit: number;
+  };
+  breakpoints: {
+    header: string;
+  };
+  maxWidth: string;
+};
+
+interface ThemeProps {
+  theme?: VofoTheme;
+  children?: React.ReactNode;
+}
+
+export const defaultTheme: VofoTheme = {
   colors: {
     brand: `#a31f34`,
     white: `#ffffff`,
@@ -48,9 +73,9 @@ export const typography = new Typography({
   ],
 });
 
-export const typographyJSON = typography.toJSON();
+export const typographyJSON: any = typography.toJSON();
 
-export const Theme = ({ theme = defaultTheme, children }) => (
+export const Theme = ({ theme = defaultTheme, children }: ThemeProps) => (
   <ThemeProvider theme={theme}>
     <Global
       styles={{

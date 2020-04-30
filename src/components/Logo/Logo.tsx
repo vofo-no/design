@@ -1,11 +1,14 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import PropTypes from "prop-types";
 import { useTheme } from "emotion-theming";
 
 import { defaultTheme } from "../Theme";
 
-const getCss = (variant, theme) => {
+interface LogoProps {
+  variant?: "header" | "default";
+}
+
+const getCss = (variant: LogoProps["variant"], theme: any) => {
   switch (variant) {
     case "header":
       return css`
@@ -21,7 +24,7 @@ const getCss = (variant, theme) => {
   }
 };
 
-const Logo = ({ variant }) => {
+const Logo = ({ variant = "default" }: LogoProps): JSX.Element => {
   const theme = useTheme() || defaultTheme;
   const style = getCss(variant, theme);
   return (
@@ -405,14 +408,6 @@ const Logo = ({ variant }) => {
       </g>
     </svg>
   );
-};
-
-Logo.propTypes = {
-  variant: PropTypes.oneOf(["default", "header"]),
-};
-
-Logo.defaultProps = {
-  variant: "default",
 };
 
 export { Logo };

@@ -1,7 +1,7 @@
 import React from "react";
 import { Theme } from "../";
 import { Container } from "./";
-import { withKnobs, select, number, boolean } from "@storybook/addon-knobs";
+import { withKnobs, select, boolean } from "@storybook/addon-knobs";
 
 export default {
   title: "Container",
@@ -12,8 +12,8 @@ export const Default = () => (
   <Theme>
     <Container>
       <Container
-        elevation={number("Elevation", 0, { max: 2, min: 0 })}
-        padding={number("Padding", 1, { max: 2, min: 0 })}
+        elevation={select("Elevation", [0, 1, 2], 0)}
+        padding={select("Padding", [0, 1, 2], 1)}
         color={select("Color", [null, "white", "brand", "dark"], null)}
         dark={boolean("Dark", false)}
       >

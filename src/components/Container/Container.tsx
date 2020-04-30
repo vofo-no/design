@@ -1,12 +1,25 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import PropTypes from "prop-types";
 import { useTheme } from "emotion-theming";
 
-import { defaultTheme } from "../Theme";
+import { defaultTheme, VofoTheme } from "../Theme";
 
-const Container = ({ children, elevation, color, padding, dark }) => {
-  const theme = useTheme() || defaultTheme;
+interface ContainerProps {
+  children?: React.ReactNode;
+  elevation?: 0 | 1 | 2;
+  padding?: 0 | 1 | 2;
+  color?: `white` | `brand` | `dark`;
+  dark?: boolean;
+}
+
+const Container = ({
+  children = null,
+  elevation = 0,
+  color = null,
+  padding = 1,
+  dark = false,
+}: ContainerProps) => {
+  const theme: VofoTheme = useTheme() || defaultTheme;
 
   return (
     <div
@@ -37,23 +50,6 @@ const Container = ({ children, elevation, color, padding, dark }) => {
       {children}
     </div>
   );
-};
-
-Container.propTypes = {
-  children: PropTypes.node,
-  elevation: PropTypes.oneOf([0, 1, 2]),
-  padding: PropTypes.oneOf([0, 1, 2]),
-  color: PropTypes.oneOf([null, `white`, `brand`, `dark`]),
-  dark: PropTypes.bool,
-};
-
-Container.defaultProps = {
-  node: null,
-  elevation: 0,
-  padding: 1,
-  color: null,
-  dark: false,
-  css: {},
 };
 
 export { Container };
