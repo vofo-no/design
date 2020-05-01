@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, Global } from "@emotion/core";
 import { ThemeProvider } from "emotion-theming";
+import { injectGlobal } from "emotion";
 import Typography from "typography";
 
 export type VofoTheme = {
@@ -48,7 +49,7 @@ export const defaultTheme: VofoTheme = {
   maxWidth: `960px`,
 };
 
-export const typography = new Typography({
+const typography = new Typography({
   baseFontSize: "16px",
   baseLineHeight: 1.5,
   headerWeight: 600,
@@ -75,16 +76,26 @@ export const typography = new Typography({
 
 export const typographyJSON: any = typography.toJSON();
 
-export const Theme = ({ theme = defaultTheme, children }: ThemeProps) => (
-  <ThemeProvider theme={theme}>
-    <Global
-      styles={{
-        body: { background: theme.colors.light },
-        "a:hover, a:active, a:focus": {
-          color: theme.colors.brand,
-        },
-      }}
-    />
-    {children}
-  </ThemeProvider>
-);
+export const Theme = ({ theme = defaultTheme, children }: ThemeProps) => {
+  injectGlobal`
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+  `;
+  const body = {
+    ...typographyJSON["body"],
+    background: theme.colors.light,
+  };
+  return (
+    <ThemeProvider theme={theme}>
+      <Global
+        styles={{
+          ...typographyJSON,
+          body,
+          "a:hover, a:active, a:focus": {
+            color: theme.colors.brand,
+          },
+        }}
+      />
+      {children}
+    </ThemeProvider>
+  );
+};

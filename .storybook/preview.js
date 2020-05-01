@@ -1,12 +1,6 @@
 import React from "react";
 import { addDecorator } from "@storybook/react";
-import { TypographyStyle, GoogleFont } from "react-typography";
-import { typography } from "../src/components/Theme";
+import { CacheProvider } from "@emotion/core";
+import { cache } from "emotion";
 
-addDecorator((story) => (
-  <>
-    <TypographyStyle typography={typography} />
-    <GoogleFont typography={typography} />
-    {story()}
-  </>
-));
+addDecorator((story) => <CacheProvider value={cache}>{story()}</CacheProvider>);
