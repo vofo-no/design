@@ -2,11 +2,12 @@
   "compilerOptions": {
     "outDir": "./dist/",
     "noImplicitAny": true,
+    "esModuleInterop": true,
     "module": "commonjs",
     "target": "es5",
     "jsx": "react",
     "declaration": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/index.ts"],
   "exclude": ["**/*.stories.tsx"]
 }
