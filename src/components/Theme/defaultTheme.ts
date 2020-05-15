@@ -4,7 +4,7 @@ const fonts = {
   inject: `@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');`,
 };
 
-const fontSizes = [9, 12, 16, 21, 28, 38, 51];
+const fontSizes = [10, 14, 16, 21, 28, 38, 51];
 
 const fontWeights = {
   regular: 400,
