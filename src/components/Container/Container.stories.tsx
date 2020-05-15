@@ -1,7 +1,7 @@
 import React from "react";
 import { Theme } from "../";
 import { Container } from "./";
-import { withKnobs, select, boolean } from "@storybook/addon-knobs";
+import { withKnobs, select } from "@storybook/addon-knobs";
 
 export default {
   title: "Container",
@@ -12,12 +12,15 @@ export const Default = () => (
   <Theme>
     <Container>
       <Container
-        elevation={select("Elevation", [0, 1, 2], 0)}
-        padding={select("Padding", [0, 1, 2], 1)}
-        color={select("Color", [null, "white", "brand", "dark"], null)}
-        dark={boolean("Dark", false)}
+        boxShadow={select("Elevation", [0, 1, 2], 0)}
+        padding={select("Padding", [undefined, "default", "none"], undefined)}
+        variant={select(
+          "Color",
+          [undefined, "white", "primary", "secondary", "dark"],
+          undefined
+        )}
       >
-        <h1>Header 1</h1>
+        <h1>Næring til læring</h1>
         <p>
           Lorem ipsum dolor sit amet, melius impedit omnesque est no, cu est
           velit repudiare dissentiet, te commune antiopam urbanitas quo. Ea qui

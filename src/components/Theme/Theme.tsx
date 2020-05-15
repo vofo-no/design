@@ -1,101 +1,100 @@
 /** @jsx jsx */
-import { jsx, Global } from "@emotion/core";
-import { ThemeProvider } from "emotion-theming";
-import { injectGlobal } from "emotion";
-import Typography from "typography";
+import { jsx, Global, css as emotionCss } from "@emotion/core";
+import styled from "@emotion/styled";
+import { ThemeProvider, withTheme } from "emotion-theming";
+import emotionNormalize from "emotion-normalize";
+import css from "@styled-system/css";
 
-export type VofoTheme = {
-  colors: {
-    brand: string;
-    white: string;
-    whiteText: string;
-    gray: string;
-    dark: string;
-    darkText: string;
-    light: string;
-    green: string;
-  };
-  spacing: {
-    unit: number;
-  };
-  breakpoints: {
-    header: string;
-  };
-  maxWidth: string;
-};
+import theme from "./defaultTheme";
 
 interface ThemeProps {
-  theme?: VofoTheme;
   children?: React.ReactNode;
 }
 
-export const defaultTheme: VofoTheme = {
+const Base = styled("div")(
+  css({
+    fontFamily: "body",
+    fontSize: 2,
+    lineHeight: "copy",
+    color: "text.primary",
+    "a:hover, a:active, a:focus": {
+      color: "brand.primary",
+    },
+    "p, ul, ol, dl, blockquote": {
+      marginY: 3,
+      maxWidth: "72ch",
+    },
+    blockquote: {
+      marginY: 4,
+    },
+    "h1, .h1": {
+      fontFamily: "heading",
+      lineHeight: "title",
+      fontWeight: "heading",
+      fontSize: 5,
+      paddingTop: 1,
+      marginBottom: 2,
+    },
+    "h2, .h2": {
+      fontFamily: "heading",
+      lineHeight: "title",
+      fontWeight: "heading",
+      fontSize: 4,
+      paddingTop: 3,
+      marginBottom: 2,
+    },
+    "h3, .h3": {
+      fontFamily: "heading",
+      lineHeight: "title",
+      fontWeight: "heading",
+      fontSize: 3,
+      paddingTop: 3,
+      marginBottom: 2,
+    },
+    "h4, .h4": {
+      fontFamily: "heading",
+      lineHeight: "title",
+      fontWeight: "heading",
+      fontSize: 2,
+      paddingTop: 3,
+      marginBottom: 2,
+    },
+  })
+);
+
+type MakeGlobalStylesProps = {
   colors: {
-    brand: `#a31f34`,
-    white: `#ffffff`,
-    whiteText: `rgba(255, 255, 255, 0.9)`,
-    gray: `#6d6e70`,
-    dark: `#000c`,
-    darkText: `rgba(0, 0, 0, 0.8)`,
-    light: `#e3e3e3`,
-    green: `#1f7d1f`,
-  },
-  spacing: {
-    unit: 16,
-  },
-  breakpoints: {
-    header: `725px`,
-  },
-  maxWidth: `960px`,
+    bg: {
+      base: string;
+    };
+  };
+  fonts: {
+    inject: string;
+  };
 };
 
-const typography = new Typography({
-  baseFontSize: "16px",
-  baseLineHeight: 1.5,
-  headerWeight: 600,
-  headerFontFamily: [
-    "Open Sans",
-    "Helvetica Neue",
-    "Segoe UI",
-    "Helvetica",
-    "Arial",
-    "sans-serif",
-  ],
-  bodyFontFamily: ["Roboto", "Helvetica", "Arial", "sans-serif"],
-  googleFonts: [
-    {
-      name: "Open Sans",
-      styles: ["600"],
-    },
-    {
-      name: "Roboto",
-      styles: ["400", "400i", "700", "700i"],
-    },
-  ],
-});
+const makeGlobalStyles = ({
+  colors,
+  fonts,
+}: MakeGlobalStylesProps) => emotionCss`
+${emotionNormalize}
+${fonts.inject}
+body {
+  background: ${colors.bg.base};
+}
+`;
 
-export const typographyJSON: any = typography.toJSON();
+const GlobalStyles = withTheme(({ theme }) => (
+  <Global styles={makeGlobalStyles(theme)} />
+));
 
-export const Theme = ({ theme = defaultTheme, children }: ThemeProps) => {
-  injectGlobal`
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-  `;
-  const body = {
-    ...typographyJSON["body"],
-    background: theme.colors.light,
-  };
+const Theme = ({ children }: ThemeProps) => {
   return (
     <ThemeProvider theme={theme}>
-      <Global
-        styles={{
-          ...typographyJSON,
-          body,
-          "a:hover, a:active, a:focus": {
-            color: theme.colors.brand,
-          },
-        }}
-      />
-      {children}
+      <GlobalStyles />
+      <Base>{children}</Base>
     </ThemeProvider>
   );
 };
+
+export { Theme };

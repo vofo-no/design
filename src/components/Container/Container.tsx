@@ -1,55 +1,79 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
-import { useTheme } from "emotion-theming";
+import styled from "@emotion/styled";
+import { variant, layout, shadow } from "styled-system";
 
-import { defaultTheme, VofoTheme } from "../Theme";
-
-interface ContainerProps {
+type ContainerProps = {
   children?: React.ReactNode;
-  elevation?: 0 | 1 | 2;
-  padding?: 0 | 1 | 2;
-  color?: `white` | `brand` | `dark`;
-  dark?: boolean;
-}
+  boxShadow?: 0 | 1 | 2;
+  padding?: "default" | "none";
+  variant?: `white` | `primary` | `secondary` | `dark`;
+  maxWidth?: number;
+};
 
-const Container = ({
-  children = null,
-  elevation = 0,
-  color = null,
-  padding = 1,
-  dark = false,
-}: ContainerProps) => {
-  const theme: VofoTheme = useTheme() || defaultTheme;
+const Container: React.FC<ContainerProps> = styled("div")(
+  layout,
+  shadow,
+  variant({
+    prop: "padding",
+    variants: {
+      default: {
+        px: 3,
+        py: 2,
+        my: 0,
+        mx: "auto",
+      },
+      none: {
+        p: 0,
+        my: 0,
+        mx: "auto",
+      },
+    },
+  }),
+  variant({
+    variants: {
+      white: {
+        color: "text.primary",
+        bg: "bg.white",
+      },
+      primary: {
+        color: "text.inverse",
+        bg: "brand.primary",
+        a: {
+          color: "text.inverse",
+        },
+        "a:hover, a:active, a:focus": {
+          color: "yellow",
+        },
+      },
+      secondary: {
+        color: "text.inverse",
+        bg: "brand.secondary",
+        a: {
+          color: "text.inverse",
+        },
+        "a:hover, a:active, a:focus": {
+          color: "yellow",
+        },
+      },
+      dark: {
+        color: "text.inverse",
+        bg: "bg.dark",
+        a: {
+          color: "text.inverse",
+        },
+        "a:hover, a:active, a:focus": {
+          color: "yellow",
+        },
+      },
+    },
+  })
+);
 
-  return (
-    <div
-      css={{
-        margin: `0 auto`,
-        maxWidth: theme.maxWidth,
-        padding: theme.spacing.unit * 1.5 * padding,
-        backgroundColor: color ? theme.colors[color] : undefined,
-        boxShadow: elevation
-          ? `rgba(0, 0, 0, 0.1) ${elevation}px ${elevation}px 1px`
-          : undefined,
-        color: dark ? theme.colors.whiteText : undefined,
-        "a:link, a:visited": dark
-          ? {
-              color: theme.colors.whiteText,
-            }
-          : undefined,
-        "a:hover, a:active, a:focus": dark
-          ? {
-              color: theme.colors.white,
-              backgroundColor: `rgba(255, 255, 255, 0.2)`,
-              borderColor: theme.colors.white,
-              textDecoration: `none`,
-            }
-          : undefined,
-      }}
-    >
-      {children}
-    </div>
-  );
+Container.defaultProps = {
+  variant: "white",
+  padding: "default",
+  boxShadow: 0,
+  maxWidth: 8,
 };
 
 export { Container };
