@@ -41,6 +41,9 @@ export const Grid = () => (
       <Container
         gridTemplateRows={["300px auto", "300px auto", "400px"]}
         gridTemplateColumns={[null, null, "50% 50%"]}
+        display="grid"
+        variant="dark"
+        padding="none"
       >
         <h1>Næring til læring</h1>
         <Container variant="secondary">

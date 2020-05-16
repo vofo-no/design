@@ -10,10 +10,10 @@ type ContainerProps = {
   maxWidth?: number;
   gridTemplateRows?: string[];
   gridTemplateColumns?: string[];
+  display?: string;
 };
 
 const Container: React.FC<ContainerProps> = styled("div")(
-  { display: "grid" },
   layout,
   shadow,
   grid,
