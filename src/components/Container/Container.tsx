@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import styled from "@emotion/styled";
-import { variant, layout, shadow } from "styled-system";
+import { variant, layout, shadow, grid } from "styled-system";
 
 type ContainerProps = {
   children?: React.ReactNode;
@@ -8,11 +8,15 @@ type ContainerProps = {
   padding?: "default" | "none";
   variant?: `white` | `primary` | `secondary` | `dark`;
   maxWidth?: number;
+  gridTemplateRows?: string[];
+  gridTemplateColumns?: string[];
 };
 
 const Container: React.FC<ContainerProps> = styled("div")(
+  { display: "grid" },
   layout,
   shadow,
+  grid,
   variant({
     prop: "padding",
     variants: {
