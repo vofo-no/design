@@ -1,7 +1,7 @@
 import React from "react";
 import { Theme } from "../";
 import { Container } from "./";
-import { withKnobs, select } from "@storybook/addon-knobs";
+import { withKnobs, select, number } from "@storybook/addon-knobs";
 
 export default {
   title: "Container",
@@ -13,7 +13,8 @@ export const Default = () => (
     <Container>
       <Container
         boxShadow={select("Elevation", [0, 1, 2], 0)}
-        padding={select("Padding", [undefined, "default", "none"], undefined)}
+        py={number("Padding Y", 2)}
+        px={number("Padding X", 3)}
         variant={select(
           "Color",
           [undefined, "white", "primary", "secondary", "dark"],
@@ -43,7 +44,8 @@ export const Grid = () => (
         gridTemplateColumns={[null, null, "50% 50%"]}
         display="grid"
         variant="dark"
-        padding="none"
+        py={0}
+        px={0}
       >
         <h1>Næring til læring</h1>
         <Container variant="secondary">

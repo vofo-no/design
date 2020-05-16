@@ -1,12 +1,15 @@
 /** @jsx jsx */
 import styled from "@emotion/styled";
-import { variant, layout, shadow, grid } from "styled-system";
+import { variant, layout, shadow, space, grid } from "styled-system";
 
 type ContainerProps = {
   children?: React.ReactNode;
   boxShadow?: 0 | 1 | 2;
-  padding?: "default" | "none";
-  variant?: `white` | `primary` | `secondary` | `dark`;
+  px?: number | string;
+  py?: number | string;
+  mx?: number | string;
+  my?: number | string;
+  variant?: `default` | `white` | `primary` | `secondary` | `dark`;
   maxWidth?: number;
   gridTemplateRows?: string[];
   gridTemplateColumns?: string[];
@@ -17,24 +20,12 @@ const Container: React.FC<ContainerProps> = styled("div")(
   layout,
   shadow,
   grid,
+  space,
   variant({
-    prop: "padding",
     variants: {
       default: {
-        px: 3,
-        py: 2,
-        my: 0,
-        mx: "auto",
+        color: "text.primary",
       },
-      none: {
-        p: 0,
-        my: 0,
-        mx: "auto",
-      },
-    },
-  }),
-  variant({
-    variants: {
       white: {
         color: "text.primary",
         bg: "bg.white",
@@ -74,8 +65,11 @@ const Container: React.FC<ContainerProps> = styled("div")(
 );
 
 Container.defaultProps = {
-  variant: "white",
-  padding: "default",
+  variant: "default",
+  py: 2,
+  px: 3,
+  my: 0,
+  mx: "auto",
   boxShadow: 0,
   maxWidth: 8,
 };
