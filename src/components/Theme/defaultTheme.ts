@@ -54,7 +54,7 @@ export default {
     bg: {
       base: "#e3e3e3",
       white: "#ffffff",
-      dark: "#000c",
+      dark: "#2d2d2d",
     },
     text: {
       primary: "#000c",
