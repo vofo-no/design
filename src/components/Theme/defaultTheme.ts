@@ -8,7 +8,6 @@ const fontSizes = [10, 14, 16, 21, 28, 38, 51];
 
 const fontWeights = {
   regular: 400,
-  medium: 500,
   heading: 600,
   bold: 700,
 };
