@@ -15,8 +15,9 @@ type ContainerProps = {
   gridTemplateColumns?: string | string[];
   display?: string;
   alignItems?: string;
-  columnGap?: string | string[];
-  rowGap?: string | string[];
+  gridGap?: number | number[] | string | string[];
+  gridColumnGap?: number | number[] | string | string[];
+  gridRowGap?: number | number[] | string | string[];
 };
 
 const Container: React.FC<ContainerProps> = styled("div")(
