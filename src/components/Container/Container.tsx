@@ -5,16 +5,18 @@ import { variant, layout, shadow, space, grid, flexbox } from "styled-system";
 type ContainerProps = {
   children?: React.ReactNode;
   boxShadow?: 0 | 1 | 2;
-  px?: number | string;
-  py?: number | string;
-  mx?: number | string;
-  my?: number | string;
+  px?: number | number[] | string;
+  py?: number | number[] | string;
+  mx?: number | number[] | string;
+  my?: number | number[] | string;
   variant?: `default` | `white` | `primary` | `secondary` | `dark`;
   maxWidth?: number;
-  gridTemplateRows?: string[];
-  gridTemplateColumns?: string[];
+  gridTemplateRows?: string | string[];
+  gridTemplateColumns?: string | string[];
   display?: string;
   alignItems?: string;
+  columnGap?: string | string[];
+  rowGap?: string | string[];
 };
 
 const Container: React.FC<ContainerProps> = styled("div")(
