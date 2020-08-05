@@ -9,6 +9,7 @@ type TextProps = {
   fontSize?: number | number[];
   fontWeight?: string;
   lineHeight?: string;
+  textAlign?: string;
 };
 
 const Text: React.FC<TextProps> = styled("span")(typography, color);
