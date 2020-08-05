@@ -18,6 +18,7 @@ type ContainerProps = {
   gridGap?: number | number[] | string | string[];
   gridColumnGap?: number | number[] | string | string[];
   gridRowGap?: number | number[] | string | string[];
+  flexDirection?: string | string[];
 };
 
 const Container: React.FC<ContainerProps> = styled("div")(
