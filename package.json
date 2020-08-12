@@ -1,6 +1,6 @@
 {
   "name": "vofo-design",
-  "version": "1.0.0",
+  "version": "0.2.0-alpha",
   "author": "Voksenopplæringsforbundet <vofo@vofo.no>",
   "license": "MIT",
   "main": "dist/index.js",
