@@ -8,10 +8,14 @@ type TextProps = {
   fontFamily?: string;
   fontSize?: number | number[];
   fontWeight?: string;
-  lineHeight?: string;
+  lineHeight?: string | string[];
   textAlign?: string;
 };
 
-const Text: React.FC<TextProps> = styled("span")(typography, color);
+const Inline: React.FC<TextProps> = styled("span")(typography, color);
+
+const Block: React.FC<TextProps> = styled("div")(typography, color);
+
+const Text = { Inline, Block };
 
 export { Text };
