@@ -1,11 +1,10 @@
 import React from "react";
 import { Theme } from "../";
 import { Container } from "./";
-import { withKnobs, select, number } from "@storybook/addon-knobs";
+import { select, number } from "@storybook/addon-knobs";
 
 export default {
   title: "Container",
-  decorators: [withKnobs],
 };
 
 export const Default = () => (
