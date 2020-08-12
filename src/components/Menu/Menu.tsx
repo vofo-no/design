@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import css from "@styled-system/css";
 import { variant } from "styled-system";
 
-const MenuContainer = styled("div")(
+const MenuContainer: React.FC = styled("div")(
   css({
     display: "flex",
     flexDirection: ["column", "column", "column-reverse"],
