@@ -1,39 +1,20 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
+import React from "react";
 import styled from "@emotion/styled";
-import css from "@styled-system/css";
 import { variant } from "styled-system";
+import { Button } from "../Button";
+import css from "@styled-system/css";
+import theme from "../theme";
 
 interface MenuButtonProps {
   open: boolean;
   onClick: (event: any) => void;
 }
 
-const Button = styled.button(
-  css({
-    fontFamily: "heading",
-    background: "none",
-    border: "none",
-    display: ["flex", "flex", "none"],
-    alignItems: "center",
-    cursor: "pointer",
-    alignSelf: "flex-end",
-    textTransform: "uppercase",
-    padding: 2,
-    marginBottom: "auto",
-    "div::before, div::after, div > div": {
-      backgroundColor: "brand.gray",
-    },
-    "&:hover": {
-      color: "brand.primary",
-      "div::before, div::after, div > div": {
-        backgroundColor: "brand.primary",
-      },
-    },
-  })
-);
+interface BarsProps {
+  open?: boolean;
+}
 
-const Bars = styled.div(
+const Bars = styled.div<BarsProps>(
   css({
     marginLeft: 3,
     width: "40px",
@@ -47,8 +28,9 @@ const Bars = styled.div(
     },
   }),
   variant({
+    prop: "open",
     variants: {
-      open: {
+      true: {
         "&::before": {
           transform: "translateY(12px) rotate(135deg)",
         },
@@ -63,13 +45,15 @@ const Bars = styled.div(
   })
 );
 
-const MenuButton = ({ open = false, onClick }: MenuButtonProps) => (
-  <Button onClick={onClick}>
+const MenuButton = ({ open = false, ...rest }: MenuButtonProps) => (
+  <Button variant="menu" {...rest}>
     Meny
-    <Bars variant={open && "open"}>
+    <Bars open={open}>
       <div />
     </Bars>
   </Button>
 );
+
+MenuButton.defaultProps = { theme, display: ["flex", "flex", "none"] };
 
 export { MenuButton };
