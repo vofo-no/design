@@ -15,3 +15,6 @@ yarn-error.log*
 .tmp
 .eslintcache
 .DS_Store
+stats.html
+
+*.tgz
