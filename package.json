@@ -1,5 +1,9 @@
 {
   "name": "@vofo-no/design",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vofo-no/design.git"
+  },
   "version": "0.4.2-0",
   "author": "Voksenopplæringsforbundet <vofo@vofo.no>",
   "license": "MIT",
