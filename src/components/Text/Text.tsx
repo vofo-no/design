@@ -1,21 +1,30 @@
-/** @jsx jsx */
 import styled from "@emotion/styled";
-import { typography, color } from "styled-system";
+import { TypographyProps, variant } from "styled-system";
+import { COMMON, TYPOGRAPHY, CommonProps } from "../constants";
+import theme from "../theme";
 
-type TextProps = {
-  children?: React.ReactNode;
-  color?: string;
-  fontFamily?: string;
-  fontSize?: number | number[];
-  fontWeight?: string;
-  lineHeight?: string | string[];
-  textAlign?: string;
+interface TextProps extends CommonProps, TypographyProps {
+  vertical?: "responsive";
+}
+
+const Text = styled.p<TextProps>(
+  COMMON,
+  TYPOGRAPHY,
+  variant({
+    prop: "vertical",
+    variants: {
+      responsive: {
+        writingMode: [null, null, "vertical-lr"],
+        position: "relative",
+      },
+    },
+  })
+);
+Text.defaultProps = {
+  theme,
+  fontFamily: "body",
+  lineHeight: "default",
+  fontSize: 2,
 };
-
-const Inline: React.FC<TextProps> = styled("span")(typography, color);
-
-const Block: React.FC<TextProps> = styled("div")(typography, color);
-
-const Text = { Inline, Block };
 
 export { Text };

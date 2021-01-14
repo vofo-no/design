@@ -1,58 +1,60 @@
-/** @jsx jsx */
 import styled from "@emotion/styled";
 import css from "@styled-system/css";
 import { variant } from "styled-system";
+import theme from "../theme";
 
-const MenuContainer: React.FC = styled("div")(
+interface MenuContainerProps {
+  open?: boolean;
+}
+
+const MenuContainer = styled.div<MenuContainerProps>(
+  (props) =>
+    props.open ? `display: grid;` : css({ display: ["none", "none", "grid"] }),
   css({
-    display: "flex",
-    flexDirection: ["column", "column", "column-reverse"],
-    justifyContent: "space-between",
-    flexGrow: 1,
+    gridTemplateRows: [null, null, "50%"],
+    height: "100%",
     marginLeft: 3,
   })
 );
 
-type MenuProps = {
+MenuContainer.defaultProps = { theme };
+
+interface MenuProps {
   children?: React.ReactNode;
   variant?: `main` | `top`;
   open?: boolean;
-};
+}
 
-const Menu: React.FC<MenuProps> = styled("nav")(
+const Menu = styled.nav<MenuProps>(
   css({
-    display: ["none", "none", "flex"],
     flexDirection: ["column", "column", "row"],
+    display: "flex",
     textAlign: "right",
     marginTop: 2,
     a: {
-      color: "text.primary",
+      color: "text",
       textDecoration: "none",
       padding: 2,
       marginX: 1,
-      lineHeight: "title",
+      lineHeight: "heading",
     },
     "a:hover, a:active, a:focus": {
-      color: "brand.primary",
-    },
-  }),
-  variant({
-    prop: "open",
-    variants: {
-      true: {
-        display: ["flex", "flex"],
-      },
+      color: "primary",
     },
   }),
   variant({
     variants: {
       main: {
+        fontSize: 2,
+        fontWeight: "heading",
         a: {
           fontFamily: "heading",
         },
       },
       top: {
-        alignSelf: "flex-end",
+        justifyContent: "flex-end",
+        gridRow: [null, null, 1],
+        marginBottom: "auto",
         fontSize: 1,
         "a:hover, a:active, a:focus": {
           textDecoration: "underline",
@@ -64,6 +66,7 @@ const Menu: React.FC<MenuProps> = styled("nav")(
 
 Menu.defaultProps = {
   variant: "main",
+  theme,
 };
 
 export { Menu, MenuContainer };
