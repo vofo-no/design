@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/vofo-no/design.git"
   },
-  "version": "0.4.2-0",
+  "version": "0.4.2",
   "author": "Voksenopplæringsforbundet <vofo@vofo.no>",
   "license": "MIT",
   "private": true,
