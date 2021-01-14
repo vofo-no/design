@@ -51,6 +51,7 @@
     "build-storybook": "build-storybook",
     "build": "yarn clean && rollup -c",
     "prepublishOnly": "yarn build",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "postversion": "git push --tags"
   }
 }
